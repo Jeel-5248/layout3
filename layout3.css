@@ -1,0 +1,174 @@
+.container{
+    border: 1px solid black;
+}
+.heder{
+    background-color: rgb(197, 190, 190);
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.heder p{
+    float: right;
+    margin-top: 30px;
+}
+.cart{
+    margin-left: 70px;
+}
+.user{
+    margin-right: 70px;
+}
+.nav{
+    background-color: white;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.logo{
+    margin-left: 200px;
+    
+}
+.logo img{
+    width: 100px;
+    margin-left: 50px;
+}
+.number{
+    margin:30px 200px 0px 0px;
+    font-size: 20px;
+    text-align: center;
+
+}
+.list{
+    margin: 10px;
+}
+.list ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: center;
+    
+}
+.list ul li{
+    padding: 30px;
+    margin-left: 50px;
+    justify-content: center;
+}
+.l1{
+    background-color: orange;
+}
+.main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* margin: 10px; */
+    background-color:  rgb(197, 190, 190);
+}
+.headline{
+    width: 300px
+}
+form{
+    width: auto;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+#late input{
+    margin:10px 5px 10px 0px;
+    padding-bottom: 0px 0px 0px 10px;
+    border-radius: 5px;
+}
+button{
+    background-color: orange;
+    justify-content: center;
+    margin-right: 90px;
+}
+.button{
+    width: 400px;
+    height: 30px;
+}
+.other{
+    background-color: rgb(40, 138, 204);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1px;
+}
+.data{
+   margin-left: 250px;
+    width: 550px;
+}
+.but button{
+    margin-top: 50px;
+}
+.watch{
+    background-color: rgb(197, 190, 190);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.video{
+    margin: 20px 0px 20px 200px;
+    justify-content: center;
+    display: block;
+
+}
+.this{
+    display: block;
+    width: 50%;
+    margin-left: 10px;
+}
+.this p{
+    width: 50%;
+}
+.this button{
+    width: 100px;
+}
+.images{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-around;
+    margin-top: 10px;
+   
+}
+.img1{
+    display: grid;
+    grid-template-columns: auto;
+    
+    width: 400px;
+
+}
+.img1 img{
+    width: 100%;
+    height: 250px;
+}
+.btn button {
+    display: block;
+    margin: auto;
+    background-color: orange;
+    width: 10%;
+    
+}
+.footer{
+    background-color: gray;
+
+}
+.cards{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    background-color:grey;
+    justify-content: space-around;
+    margin-top: 10px;
+    color: white;
+}
+.cards div{
+    margin-top: 10px;
+}
+.copyright {
+    background-color: rgb(41, 40, 40);
+    margin-top: 0px;
+    text-align: center;
+    color: white;
+    height: 20px;
+}
+
