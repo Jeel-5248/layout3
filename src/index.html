@@ -1,0 +1,753 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TailwindDemo</title>
+    <link rel="stylesheet" href="../dist/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <script src="https://cdn.tailwindcss.com/3.2.4"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                fontFamily: {
+                    sans: ["Roboto", "sans-serif"],
+                    body: ["Roboto", "sans-serif"],
+                    mono: ["ui-monospace", "monospace"],
+                },
+            },
+            corePlugins: {
+                preflight: false,
+            },
+        };
+    </script>
+</head>
+
+<body>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+
+
+
+
+    <!-- component -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+    <!-- component -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <div class="w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
+        <div x-data="{ open: false }"
+            class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+            <div class="p-4 flex flex-row items-center justify-between">
+                <button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
+                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                        <path x-show="!open" fill-rule="evenodd"
+                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+                            clip-rule="evenodd"></path>
+                        <path x-show="open" fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <img src="logo.png" alt="">
+
+            </div>
+            <nav :class="{'flex': open, 'hidden': !open}"
+                class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+                <a class="px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-200 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                    href="#">Home</a>
+
+
+                <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                        <span>Blog</span>
+                        <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
+                            class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95"
+                        class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                        <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">1st full Post+2 cols Grid</a>
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">1st Full Post+list</a>
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">2 cols Grid Layout</a>
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">3 cols Grid Layout</a>
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">Standard Blog Layout</a>
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">Link #3</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                        <span>Features</span>
+                        <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
+                            class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95"
+                        class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                        <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">Header</a>
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">Slider</a>
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">Sidebar</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                        <span>Categories</span>
+                        <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
+                            class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95"
+                        class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                        <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">Lifestyle</a>
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">Travel</a>
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">Photo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                    href="#">About</a>
+
+                <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                    href="#">Contact</a>
+
+
+                <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                    href="#">Contact</a>
+                <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                    <button @click="open = !open"
+                        class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+                        <span>Shop</span>
+                        <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
+                            class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95"
+                        class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                        <div class="px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-800">
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">Cart</a>
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">Checkout</a>
+                            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                href="#">My acoount</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- 1st div -->
+
+    <div class="bg-green-100 h-screen w-full">
+        <div class="flex justify-around">
+            <div class="grid grid-cols-3 gap-1  sm:visible max-[450px]:hidden">
+                <div><img src="2.png" class="mt-32 " alt=""></div>
+                <div><img src="3.png" class="mt-12 " alt=""></div>
+                <div><img src="4.png" class="mt-32  lg:ml-5" alt=""></div>
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+        <!-- carsol -->
+        <div id="carouselExampleControls" class="relative  max-[450px]:block hidden mt-20" data-te-carousel-init
+            data-te-carousel-slide>
+            <div class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+                <div class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                    data-te-carousel-item data-te-carousel-active>
+                    <img src="2.png" class="block w-full" alt="Wild Landscape" />
+                </div>
+                <div class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                    data-te-carousel-item>
+                    <img src="3.png" class="block w-full" alt="Camera" />
+                </div>
+                <div class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                    data-te-carousel-item>
+                    <img src="4.png" class="block w-full" alt="Exotic Fruits" />
+                </div>
+            </div>
+            <button
+                class="absolute top-0 bottom-0 left-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+                type="button" data-te-target="#carouselExampleControls" data-te-slide="prev">
+                <span class="inline-block h-8 w-8">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="h-6 w-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </span>
+                <span
+                    class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Previous</span>
+            </button>
+            <button
+                class="absolute top-0 bottom-0 right-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+                type="button" data-te-target="#carouselExampleControls" data-te-slide="next">
+                <span class="inline-block h-8 w-8">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="h-6 w-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </span>
+                <span
+                    class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Next</span>
+            </button>
+        </div>
+
+
+        <div class="grid grid-flow-row auto-rows-max text-center bg-green-100 ">
+            <div>
+                <h2>HEY THERE</h2>
+            </div>
+            <div>
+                <h1>I'M HAUS</h1>
+            </div>
+            <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium magnam soluta aut. Omnis corrupti
+                eligendi ut illum qui dolor sit?</div>
+            <div class="flex justify-center  ">
+                <button
+                    class="outline-black hover:bg-yellow-100 cursor-pointer mt-6 text-xl border-4 border-solid border-yellow-100 ">READ
+                    THE WHOLE STORY</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class=" bg-amber-100 ">
+        <div class=" flex md:flex-row justify-between flex-col">
+            <div class="ml-12">
+                <img src="5.png" alt="" class="mt-20 sm:flex sm:justify-center">
+            </div>
+            <div>
+                <h1 class="ml-12 mt-20 text-normal md:text-xl text-sm">Condimentum Magna Vel Sodales Mollis Nisl Nibh
+                    Ornare Eros</h1>
+                <p class="ml-14">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa hic quam vitae
+                    doloremque. Ullam adipisci tempore fugit voluptatum? Rerum maxime porro iusto corrupti iste numquam
+                    culpa eveniet debitis deleniti voluptates.</p>
+
+                <button
+                    class="outline-black hover:bg-green-200 cursor-pointer mt-6 text-xl border-4 border-solid border-green-200 ml-12 ">GET
+                    STARTED</button>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="bg-gray-100 grid grid-cols-3  sm:visible max-[450px]:hidden">
+            <div class="">
+                <img src="8.png" class="mt-12" alt="">
+                <img src="9.png" class="mt-12" alt="">
+            </div>
+            <div class="flex flex-col justify-center">
+                <p class="text-center">The Portfolio</p>
+                <h1 class="text-center">View recent work</h1>
+            </div>
+            <div class="">
+                <img src="10.png" class="mt-12 items-end" alt="">
+                <img src="11.png" class="mt-12 items-end" alt="">
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
+    <div id="carouselExampleControls" class="relative  max-[450px]:block hidden mt-20" data-te-carousel-init
+        data-te-carousel-slide>
+        <div class="flex flex-col justify-center">
+            <p class="text-center">The Portfolio</p>
+            <h1 class="text-center">View recent work</h1>
+        </div>
+        <div class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+            <div class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                data-te-carousel-item data-te-carousel-active>
+                <img src="8.png" class="block w-full" alt="Wild Landscape" />
+            </div>
+            <div class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                data-te-carousel-item>
+                <img src="9.png" class="block w-full" alt="Camera" />
+            </div>
+            <div class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                data-te-carousel-item>
+                <img src="10.png" class="block w-full" alt="Exotic Fruits" />
+            </div>
+            <div class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                data-te-carousel-item>
+                <img src="11.png" class="block w-full" alt="Exotic Fruits" />
+            </div>
+        </div>
+        <button
+            class="absolute top-0 bottom-0 left-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+            type="button" data-te-target="#carouselExampleControls" data-te-slide="prev">
+            <span class="inline-block h-8 w-8">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="h-6 w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </span>
+            <span
+                class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Previous</span>
+        </button>
+        <button
+            class="absolute top-0 bottom-0 right-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+            type="button" data-te-target="#carouselExampleControls" data-te-slide="next">
+            <span class="inline-block h-8 w-8">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="h-6 w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </span>
+            <span
+                class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Next</span>
+        </button>
+    </div>
+    <div class="bg-green-100">
+        <div class="grid lg:grid-cols-2 overflow-hidden grid-cols-1 sm:visible max-[450px]:hidden">
+            <div class="border-r lg:border-amber-200 ml-12">
+                <h1>Tools For Creative</h1>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit corporis iusto autem quos quasi
+                    corrupti porro laboriosam totam nihil, dolor dicta dolorum itaque temporibus dolores est. Laborum
+                    eaque eius, omnis debitis ab porro?</p>
+            </div>
+            <div class="flex flex-row  ">
+                <img src="6.png" class="ml-12 md:w-auto w-40 items-center " alt="">
+                <img src="7.png" class="ml-5 md:w-auto w-40 items-center" alt="">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bg-green-100">
+        <div class="grid lg:grid-cols-2 overflow-hidden grid-cols-1 sm:visible min-[450px]:hidden  ">
+
+            <div class="flex flex-row  ">
+                <img src="6.png" class="ml-12 md:w-auto w-32 mt-10 items-center " alt="">
+                <img src="7.png" class="ml-5 md:w-auto w-32 mt-10 items-center" alt="">
+            </div>
+            <div class="border-r lg:border-amber-200 ml-12">
+                <h1>Tools For Creative</h1>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit corporis iusto autem quos quasi
+                    corrupti porro laboriosam totam nihil, dolor dicta dolorum itaque temporibus dolores est. Laborum
+                    eaque eius, omnis debitis ab porro?</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div>
+        <div class="grid grid-cols-3 gap-1 mt-11 max-[650px]:hidden">
+            <div>
+                <div class="border-2 border-amber-200 h-60">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, dolore quas? Nulla illum sit
+                        explicabo ipsa reiciendis! Quia saepe temporibus quod dolores.</p>
+                </div>
+                <div class="relative -top-5 flex justify-center">
+                    <img src="12.png" class="rounded-full w-20">
+                </div>
+            </div>
+            <div>
+                <div class="border-2 border-amber-200 h-60">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, dolore quas? Nulla illum sit
+                        explicabo ipsa reiciendis! Quia saepe temporibus quod dolores.</p>
+                </div>
+                <div class="relative -top-5 flex justify-center">
+                    <img src="12.png" class="rounded-full w-20">
+                </div>
+            </div>
+            <div>
+                <div class="border-2 border-amber-200 h-60">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, dolore quas? Nulla illum sit
+                        explicabo ipsa reiciendis! Quia saepe temporibus quod dolores.</p>
+                </div>
+                <div class="relative -top-5 flex justify-center">
+                    <img src="12.png" class="rounded-full w-20">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="carouselExampleControls" class="relative  max-[650px]:block hidden mt-20" data-te-carousel-init
+        data-te-carousel-slide>
+
+        <div class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+            <div class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                data-te-carousel-item data-te-carousel-active>
+                <div>
+                    <div class="border-2 border-amber-200 h-60">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, dolore quas? Nulla illum sit
+                            explicabo ipsa reiciendis! Quia saepe temporibus quod dolores.</p>
+                    </div>
+                    <div class="relative -top-5 flex justify-center">
+                        <img src="12.png" class="rounded-full w-20">
+                    </div>
+                </div>
+
+            </div>
+            <div class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                data-te-carousel-item>
+                <div>
+                    <div class="border-2 border-amber-200 h-60">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, dolore quas? Nulla illum sit
+                            explicabo ipsa reiciendis! Quia saepe temporibus quod dolores.</p>
+                    </div>
+                    <div class="relative -top-5 flex justify-center">
+                        <img src="12.png" class="rounded-full w-20">
+                    </div>
+                </div>
+            </div>
+            <div class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                data-te-carousel-item>
+                <div>
+                    <div class="border-2 border-amber-200 h-60">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, dolore quas? Nulla illum sit
+                            explicabo ipsa reiciendis! Quia saepe temporibus quod dolores.</p>
+                    </div>
+                    <div class="relative -top-5 flex justify-center">
+                        <img src="12.png" class="rounded-full w-20">
+                    </div>
+                </div>
+
+            </div>
+            <div class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                data-te-carousel-item>
+                <div>
+                    <div class="border-2 border-amber-200 h-60">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, dolore quas? Nulla illum sit
+                            explicabo ipsa reiciendis! Quia saepe temporibus quod dolores.</p>
+                    </div>
+                    <div class="relative -top-5 flex justify-center">
+                        <img src="12.png" class="rounded-full w-20">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <button
+            class="absolute top-0 bottom-0 left-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+            type="button" data-te-target="#carouselExampleControls" data-te-slide="prev">
+            <span class="inline-block h-8 w-8">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="h-6 w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </span>
+            <span
+                class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Previous</span>
+        </button>
+        <button
+            class="absolute top-0 bottom-0 right-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+            type="button" data-te-target="#carouselExampleControls" data-te-slide="next">
+            <span class="inline-block h-8 w-8">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="h-6 w-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </span>
+            <span
+                class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Next</span>
+        </button>
+    </div>
+
+    <div class="bg-green-100">
+
+
+
+        <div id="carouselExampleControls" class="relative  " data-te-carousel-init data-te-carousel-slide>
+
+            <div class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+                <div class="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                    data-te-carousel-item data-te-carousel-active>
+                    <img src="https://images.unsplash.com/photo-1590650153855-d9e808231d41?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                        class="block w-full" alt="Wild Landscape" />
+                </div>
+                <div class="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                    data-te-carousel-item>
+                    <img src="https://images.unsplash.com/photo-1590649613897-1d5c44ca3409?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                        class="block w-full" alt="Camera" />
+                </div>
+
+            </div>
+            <button
+                class="absolute top-0 bottom-0 left-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+                type="button" data-te-target="#carouselExampleControls" data-te-slide="prev">
+                <span class="inline-block h-8 w-8">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="h-6 w-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </span>
+                <span
+                    class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Previous</span>
+            </button>
+            <button
+                class="absolute top-0 bottom-0 right-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+                type="button" data-te-target="#carouselExampleControls" data-te-slide="next">
+                <span class="inline-block h-8 w-8">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="h-6 w-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </span>
+                <span
+                    class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Next</span>
+            </button>
+        </div>
+
+    </div>
+
+    <div class="bg-gray-100">
+        <div class="flex flex-row justify-start lg:mx-64">
+            <p class="md:text-3xl text-sm mt-10 p-4"><a href="#" class="border-b-4 border-violet-800">Lifestyle</a></p>
+            <p class="md:text-3xl text-sm mt-10 p-4"><a href="#" class="border-b-4 border-pink-800">Travel</a></p>
+            <p class="md:text-3xl text-sm mt-10 p-4"><a href="#" class="border-b-4 border-green-800">Photography</a></p>
+        </div>
+        <p class=" lg:mx-96 mt-10 border-2 border-blue-500">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            Sint incidunt cum neque mollitia laborum nostrum, dolor facilis blanditiis dolores porro repellendus
+            reiciendis illo maiores necessitatibus fugiat, natus quidem ipsum ea! Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Nobis ipsum deleniti laboriosam ipsa! Repellendus rem et iusto deserunt excepturi.
+            Explicabo cum ab, odio in velit minus natus dolorem tenetur alias consequatur animi doloremque eius saepe
+            nobis. Pariatur ducimus mollitia necessitatibus sit natus consequatur architecto illo porro! Eius provident
+            sunt cumque nesciunt est explicabo tenetur molestiae modi aliquam. Similique placeat deleniti voluptas sunt
+            cupiditate maxime illo saepe eum, distinctio a suscipit quo explicabo ea eligendi exercitationem voluptates,
+            molestias enim? Sunt modi necessitatibus id sed earum saepe ex officia eum culpa quas iure, unde natus
+            corporis labore dolores iusto consequatur possimus hic.</p>
+    </div>
+
+
+
+
+    <div class="bg-green-100 mt-10">
+        <div>
+            <h2 class="text-center font-bold text-2xl mb-8">Lets Collobrate Together</h2>
+        </div>
+        <div class="grid lg:grid-cols-4 grid-cols-2 lg:mx-40 text-lg">
+            <div class="pr-6">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad odio aliquid voluptate qui distinctio,
+                    veniam dolor eius iste aspernatur dolores sit libero tempore ipsam sapiente vel illo hic praesentium
+                    sequi.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure error necessitatibus nisi, dolorem
+                    veniam iste?</p>
+            </div>
+            <div class="pr-6">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad odio aliquid voluptate qui distinctio,
+                    veniam dolor eius iste aspernatur dolores sit libero tempore ipsam sapiente vel illo hic praesentium
+                    sequi.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure error necessitatibus nisi, dolorem
+                    veniam iste?</p>
+            </div>
+            <div class="pr-6 max-[600px]:hidden">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad odio aliquid voluptate qui distinctio,
+                    veniam dolor eius iste aspernatur dolores sit libero tempore ipsam sapiente vel illo hic praesentium
+                    sequi.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure error necessitatibus nisi, dolorem
+                    veniam iste?</p>
+            </div>
+            <div class="pr-6 max-[600px]:hidden">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad odio aliquid voluptate qui distinctio,
+                    veniam dolor eius iste aspernatur dolores sit libero tempore ipsam sapiente vel illo hic praesentium
+                    sequi.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure error necessitatibus nisi, dolorem
+                    veniam iste?</p>
+            </div>
+            <div>
+                <button class="border-2 border-black min-[600px]:hidden mt-4 ml-20">read more</button>
+            </div>
+        </div>
+    </div>
+
+<div class="flex justify-center ">
+    <div class="grid lg:grid-cols-3 gap-4 mt-12 grid-cols-2 max-[450px]:hidden ">
+        <div class="border-2 border-black lg:w-96 w-60">
+            <img src="13.png" alt="" class="flex justify-center">  
+            <p class="text-center">Photo</p>  
+            <p class="text-center">Littel Known Ways To Rid Yourself</p>
+            <p class="text-center border-b-lime-200">June-20-2021</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus vero in voluptatum, laboriosam corporis pariatur.</p>
+        </div>
+        <div class="border-2 border-black lg:w-96 w-60">
+           
+            <p class="text-center">Photo</p>  
+            <p class="text-center">Littel Known Ways To Rid Yourself</p>
+            <p class="text-center border-b-lime-200">June-20-2021</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus vero in voluptatum, laboriosam corporis pariatur.</p>
+            <img src="13.png" alt="" class="flex justify-center">  
+        </div>
+        <div class="border-2 border-black lg:w-96 w-60">
+            <img src="13.png" alt="" class="flex justify-center">  
+            <p class="text-center">Photo</p>  
+            <p class="text-center">Littel Known Ways To Rid Yourself</p>
+            <p class="text-center border-b-lime-200">June-20-2021</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus vero in voluptatum, laboriosam corporis pariatur.</p>
+        </div>
+        <div class="border-2 border-black lg:w-96 w-60">
+            
+            <p class="text-center">Photo</p>  
+            <p class="text-center">Littel Known Ways To Rid Yourself</p>
+            <p class="text-center border-b-lime-200">June-20-2021</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus vero in voluptatum, laboriosam corporis pariatur.</p>
+            <img src="13.png" alt="" class="flex justify-center">  
+        </div>
+        <div class="border-2 border-black lg:w-96 w-60">
+            <img src="13.png" alt="" class="flex justify-center">  
+            <p class="text-center">Photo</p>  
+            <p class="text-center">Littel Known Ways To Rid Yourself</p>
+            <p class="text-center border-b-black">June-20-2021</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus vero in voluptatum, laboriosam corporis pariatur.</p>
+           
+        </div>
+        <div class="border-2 border-black lg:w-96 w-60">
+            
+            <p class="text-center">Photo</p>  
+            <p class="text-center">Littel Known Ways To Rid Yourself</p>
+            <p class="text-center border-b-lime-200">June-20-2021</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus vero in voluptatum, laboriosam corporis pariatur.</p>
+            <img src="13.png" alt="" class="flex justify-center">  
+        </div>
+    </div>
+</div>
+
+<div class="flex flex-col min-[450px]:hidden">
+    <div class="border-2 border-pink-700 mt-10 ">
+        <p class="text-center">Photo</p>  
+        <p class="text-center">Littel Known Ways To Rid Yourself</p>
+        <p class="text-center border-b-lime-200">June-20-2021</p>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus vero in voluptatum, laboriosam corporis pariatur.</p> 
+    </div>
+    <div class="border-2 border-pink-700 mt-5">
+        <p class="text-center">Photo</p>  
+        <p class="text-center">Littel Known Ways To Rid Yourself</p>
+        <p class="text-center border-b-lime-200">June-20-2021</p>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus vero in voluptatum, laboriosam corporis pariatur.</p> 
+    </div>
+    <div class="border-2 border-pink-700 mt-5">
+        <p class="text-center">Photo</p>  
+        <p class="text-center">Littel Known Ways To Rid Yourself</p>
+        <p class="text-center border-b-lime-200">June-20-2021</p>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus vero in voluptatum, laboriosam corporis pariatur.</p> 
+    </div>
+</div>
+
+<div class="bg-green-100 mt-12 flex justify-center">
+    <div class="text center">
+        <p class="text-3xl text-center mt-5">Contact Us</p>
+    </div>
+    <div class="grid grid-cols-2 mt-20">
+        <div>
+        <form>
+            <input class="w-96 border-2 m-5 border-black" type="text" placeholder="first name"><br>
+            <input class="w-96 border-2 m-5 border-black" type="text" placeholder="Last name"><br>
+            <input class="w-96 border-2 m-5 border-black" type="email" placeholder="email"><br>
+            <textarea class="m-5 border-2 border-black" name="" id="" cols="30" rows="10" placeholder="comments"></textarea><br>
+            <button class="submit border-2 border-black m-5 w-40 text-black">submit</button>
+            
+        </form>
+        </div>
+        <div>
+            <p class="text-3xl ml-12">upload file</p>
+        
+        <div class="border-dashed border-2 border-black h-[450px]">
+            <p class="text-center mt-28">drop your files hear</p>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+</body>
+
+</html>
